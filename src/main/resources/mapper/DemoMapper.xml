@@ -3,8 +3,13 @@
 <mapper namespace="com.example.baseframe.myspringboot.mapper.DemoMapper" >
 
     <select id="testConnect" parameterType="java.lang.String" resultType="com.example.baseframe.myspringboot.domain.Employee">
-        SELECT name AS userName,sn AS userPhone FROM `t_areas` where name = #{code}
+        SELECT user_name AS userName,user_phone AS userPhone FROM `m_fnd_user` where user_name = #{code}
     </select>
-
+    <select id="findPageData" parameterType="com.example.baseframe.myspringboot.domain.Employee" resultType="com.example.baseframe.myspringboot.domain.Employee">
+       SELECT user_name AS userName,user_phone AS userPhone FROM `m_fnd_user` where user_name = #{userName}
+    </select>
+    <select id="findPageTotal" parameterType="com.example.baseframe.myspringboot.domain.Employee" resultType="java.lang.Integer">
+       SELECT COUNT(1) FROM `m_fnd_user` where user_name = #{userName}
+    </select>
 </mapper>
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Description  :
  */
 @Service
-public class DemoServiceImpl implements DemoService {
+public class DemoServiceImpl extends BaseServiceImpl<Employee> implements DemoService {
 
     @Autowired
     private DemoMapper demoMapper;

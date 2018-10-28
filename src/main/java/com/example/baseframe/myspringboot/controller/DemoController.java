@@ -1,6 +1,7 @@
 package com.example.baseframe.myspringboot.controller;
 
 import com.example.baseframe.myspringboot.domain.Employee;
+import com.example.baseframe.myspringboot.domain.PageList;
 import com.example.baseframe.myspringboot.service.DemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,16 @@ public class DemoController {
     @Value("${com.sysName}")
     private String sysName;
     @RequestMapping(value = "/connection")
-    public Employee testConnectDemo(){
-        Employee result = demoService.testConnect("成都市");
-        System.out.println("系统名称是：" + sysName + "还有：" +sysName);
-        logger.info("正在打印中info");
-        logger.warn("正在打印中warn");
-        logger.error("正在打印中error");
-        return result;
+    public PageList<Employee> testConnectDemo(){
+        Employee emp = new Employee();
+        emp.setUserName("陈康");
+//        Employee result = demoService.testConnect("陈康");
+//
+//        System.out.println("系统名称是：" + sysName + "还有：" +sysName);
+//        logger.info("正在打印中info");
+//        logger.warn("正在打印中warn");
+//        logger.error("正在打印中error");
+        return demoService.getPageList(emp);
     }
 
 }

@@ -7,7 +7,7 @@ import com.example.baseframe.myspringboot.domain.Employee;
  * @date 2018/10/17 15:08
  * Description  :
  */
-public interface DemoService {
+public interface DemoService extends BaseService<Employee>{
 
     Employee testConnect(String code);
 }

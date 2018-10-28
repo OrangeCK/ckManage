@@ -5,7 +5,7 @@ package com.example.baseframe.myspringboot.domain;
  * @date 2018/10/17 15:46
  * Description  :
  */
-public class Employee {
+public class Employee extends BaseForm{
 
     private Long id;
     private String userName;

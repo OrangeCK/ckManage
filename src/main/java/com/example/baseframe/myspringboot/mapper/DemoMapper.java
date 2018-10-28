@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface DemoMapper {
+public interface DemoMapper extends BaseMapper<Employee>{
 
     Employee testConnect(@Param("code") String code);
 }
