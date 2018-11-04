@@ -19,7 +19,7 @@ public class DemoController {
     private String sysName;
     @RequestMapping(value = "/connection")
     public PageList<Employee> testConnectDemo(){
-        Employee emp = new Employee();
+        Employee emp = null;
         emp.setUserName("陈康");
 //        Employee result = demoService.testConnect("陈康");
 //

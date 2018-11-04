@@ -9,12 +9,12 @@ import java.util.List;
  * Description :
  */
 public class PageList<T extends BaseForm> {
-    /*
-    分页总数
+    /**
+     * 分页总数
      */
     private int total = 0;
-    /*
-    分页数据的集合
+    /**
+     * 分页数据的集合
      */
     private List<T> rows = new ArrayList<>();
 

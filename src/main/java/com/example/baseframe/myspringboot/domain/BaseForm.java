@@ -8,36 +8,36 @@ import java.util.Date;
  * Description :
  */
 public class BaseForm {
-    /*
-    当前页，默认显示1
+    /**
+     * 当前页，默认显示1
      */
     private int page = 1;
-    /*
-    每页显示条数，默认10条
+    /**
+     * 每页显示条数，默认10条
      */
     private int rows = 10;
-    /*
-    创建时间
+    /**
+     * 创建时间
      */
     private Date creationDate;
-    /*
-    创建人id
+    /**
+     * 创建人id
      */
     private Long creationBy;
-    /*
-    更新时间
+    /**
+     * 更新时间
      */
     private Date updatedDate;
-    /*
-    更新人id
+    /**
+     * 更新人id
      */
     private Long updatedBy;
-    /*
-    是否有效表示
+    /**
+     * 是否有效表示
      */
     private boolean enableFlag = true;
-    /*
-    返回信息
+    /**
+     * 返回信息
      */
     private String returnMsg;
 
