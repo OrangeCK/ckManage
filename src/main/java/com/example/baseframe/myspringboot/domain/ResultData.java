@@ -1,5 +1,7 @@
 package com.example.baseframe.myspringboot.domain;
 
+import org.springframework.util.StringUtils;
+
 /**
  * @author 01378803
  * @date 2018/11/2 14:43
@@ -53,5 +55,21 @@ public class ResultData {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public ResultData(){
+
+    }
+
+    public ResultData(String msg){
+        this.msg = msg;
+    }
+
+    public ResultData(String status, String msg){
+        this.status = status;
+        if(StringUtils.isEmpty(status)){
+            status = "ok";
+        }
+        this.msg = msg;
     }
 }
