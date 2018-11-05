@@ -1,6 +1,6 @@
 package com.example.baseframe.myspringboot.exception;
 
-import com.example.baseframe.myspringboot.domain.ResultData;
+import com.example.baseframe.myspringboot.constant.MyConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,9 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +35,9 @@ import java.util.Map;
 public class MyBasicErrorController extends AbstractErrorController {
     private final static Logger logger = LoggerFactory.getLogger(MyBasicErrorController.class);
     private final ErrorProperties errorProperties;
-//    @Autowired
-//    private ApplicationContext applicationContext;
 
     @Autowired
-    public MyBasicErrorController(ErrorAttributes errorAttributes,ServerProperties serverProperties) {
+    public MyBasicErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
         super(errorAttributes);
         this.errorProperties=serverProperties.getError();
     }
@@ -51,10 +52,14 @@ public class MyBasicErrorController extends AbstractErrorController {
                                   HttpServletResponse response) {
         ModelAndView modelAndView=new ModelAndView("error");
         Map<String, Object> errorMap = getErrorAttributes(
-                request, isIncludeStackTrace(request, MediaType.ALL));
+                request, isIncludeStackTrace(request, MediaType.TEXT_HTML));
+        HttpStatus status = this.getStatus(request);
         if(errorMap != null){
-            modelAndView.addObject("msg",errorMap.get("error"));
-            modelAndView.addObject("statusCode",errorMap.get("status"));
+            modelAndView.addObject("error", errorMap.get("error"));
+            modelAndView.addObject("status", errorMap.get("status"));
+            modelAndView.addObject("timestamp", errorMap.get("timestamp"));
+            modelAndView.addObject("path", errorMap.get("path"));
+            modelAndView.addObject("message", errorMap.get("message"));
             logHandler(errorMap);
         }
         return modelAndView;
@@ -62,19 +67,21 @@ public class MyBasicErrorController extends AbstractErrorController {
 
     @RequestMapping
     @ResponseBody
-    public ResultData error(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
         Map<String, Object> body = getErrorAttributes(request,
-                isIncludeStackTrace(request, MediaType.APPLICATION_JSON));
+                isIncludeStackTrace(request, MediaType.ALL));
+        Map map = new HashMap<String, Object>();
+        map.put("msg", MyConstant.SYSTEM_EXCEPTION);
+        map.put("code", body.get("status"));
+        map.put("status", "fail");
+        map.put("time", body.get("timestamp"));
+        HttpStatus status = this.getStatus(request);
         logHandler(body);
-        ResultData resultData = new ResultData();
-        Integer status = (Integer)body.get("status");
-        resultData.setCode(status);
-        resultData.setMsg("testing SUCCESS");
-        return resultData;
+        return new ResponseEntity(map, status);
     }
 
     private void logHandler(Map<String, Object> errorMap) {
-        logger.error("url:{},status{},time:{},errorMsg:{}",errorMap.get("path"),errorMap.get("status"),errorMap.get("timestamp"),errorMap.get("message"));
+        logger.error("url:{},status{},time:{},error:{},errorMsg:{}",errorMap.get("path"),errorMap.get("status"),errorMap.get("timestamp"),errorMap.get("error"),errorMap.get("message"));
     }
 
     protected boolean isIncludeStackTrace(HttpServletRequest request, MediaType produces) {

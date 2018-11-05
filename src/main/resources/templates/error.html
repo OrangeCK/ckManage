@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>错误页面</title>
 </head>
-<body>
-动态error错误页面
-<p th:text="${error}"></p>
-<p th:text="${status}"></p>
-<p th:text="${message}"></p>
+<body >
+<div >
+    <div>
+        <div>
+            <p><span class="code" th:text="${status}"></span>非常抱歉，没有找到您要查看的页面</p>
+            <a href="/">返回首页
+                <!--<img class="logo-back" src="/img/back.png">-->
+            </a>
+            <div>
+                <div th:text="${#dates.format(timestamp,'yyyy-MM-dd HH:mm:ss')}"></div>
+                <div th:text="${message}"></div>
+                <div th:text="${error}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>

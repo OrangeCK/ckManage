@@ -17,7 +17,7 @@ public class DemoController {
     private DemoService demoService;
     @Value("${com.sysName}")
     private String sysName;
-    @RequestMapping(value = "/connection")
+    @RequestMapping(value = "/connection", method = RequestMethod.POST)
     public PageList<Employee> testConnectDemo(){
         Employee emp = null;
         emp.setUserName("陈康");

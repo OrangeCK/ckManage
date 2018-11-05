@@ -6,7 +6,7 @@
         SELECT user_name AS userName,user_phone AS userPhone FROM `m_fnd_user` where user_name = #{code}
     </select>
     <select id="findPageData" parameterType="com.example.baseframe.myspringboot.domain.Employee" resultType="com.example.baseframe.myspringboot.domain.Employee">
-       SELECT user_name AS userName,user_phone AS userPhone FROM `m_fnd_user` where user_name = #{userName}
+       SELECT user_name AS userName,phone_number AS userPhone FROM `m_fnd_user` where user_name = #{userName}
     </select>
     <select id="findPageTotal" parameterType="com.example.baseframe.myspringboot.domain.Employee" resultType="java.lang.Integer">
        SELECT COUNT(1) FROM `m_fnd_user` where user_name = #{userName}

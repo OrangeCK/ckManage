@@ -23,7 +23,7 @@ public class ResultData {
     /**
      * 返回状态
      */
-    private String status = "ok";
+    private String status = "succ";
 
     public String getMsg() {
         return msg;
@@ -68,7 +68,7 @@ public class ResultData {
     public ResultData(String status, String msg){
         this.status = status;
         if(StringUtils.isEmpty(status)){
-            status = "ok";
+            status = "succ";
         }
         this.msg = msg;
     }
