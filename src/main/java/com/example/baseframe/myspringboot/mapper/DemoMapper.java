@@ -1,5 +1,6 @@
 package com.example.baseframe.myspringboot.mapper;
 
+import com.example.baseframe.myspringboot.domain.Demo;
 import com.example.baseframe.myspringboot.domain.Employee;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface DemoMapper extends BaseMapper<Employee>{
+public interface DemoMapper extends BaseMapper<Demo>{
 
-    Employee testConnect(@Param("code") String code);
+    Demo testConnect(@Param("code") String code);
 }

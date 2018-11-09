@@ -2,11 +2,10 @@ package com.example.baseframe.myspringboot.domain;
 
 /**
  * @author 01378803
- * @date 2018/10/17 15:46
+ * @date 2018/11/8 9:22
  * Description  :
  */
-public class Employee extends BaseForm{
-
+public class Demo extends BaseForm {
     private Long id;
     private String loginName;
     private String userName;

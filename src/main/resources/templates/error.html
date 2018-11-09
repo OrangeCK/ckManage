@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>错误页面</title>
+    <meta charset="utf-8" />
+    <title>页面出错了</title>
+    <style type="text/css">
+		body{background: rgb(244,244,244);}
+		.container{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			text-align: center;
+			transform: translate(-50%, -75%);
+		}
+		.btn{
+			display:inline-block;
+			margin-top:100px;
+			width: 180px;
+			height: 40px;
+			line-height: 36px;
+			color:#fff;
+			font-size: 20px;
+			background-color: #2b5987;
+			border-radius: 5px;
+			text-decoration: none;
+		}
+		.div_err{
+            color: grey;
+	    }
+	</style>
 </head>
-<body >
-<div >
-    <div>
-        <div>
-            <p><span class="code" th:text="${status}"></span>非常抱歉，没有找到您要查看的页面</p>
-            <a href="/">返回首页
-                <!--<img class="logo-back" src="/img/back.png">-->
-            </a>
-            <div>
-                <div th:text="${#dates.format(timestamp,'yyyy-MM-dd HH:mm:ss')}"></div>
-                <div th:text="${message}"></div>
-                <div th:text="${error}"></div>
-            </div>
-        </div>
+<body>
+<div class="container">
+    <div id="errorImg">
+        <img src="/images/403.png"/>
     </div>
+    <p><h1>非常抱歉，系统开小差了...<span th:text="${status}"></span></h1></p>
+    <div class="div_err" th:text="${#dates.format(timestamp,'yyyy-MM-dd HH:mm:ss')}"></div>
+    <div class="div_err" th:text="${message}"></div>
+    <div class="div_err" th:text="${error}"></div>
+    <!--<a href="javascript:;" class="btn" onclick="goback()">返回</a>-->
 </div>
-</div>
+<script>
+	<!--function goback(){
+		window.location.href = window.location.origin + '/login/login';
+	}-->
+	</script>
 </body>
 </html>

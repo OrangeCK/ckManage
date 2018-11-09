@@ -34,6 +34,13 @@ public interface BaseMapper<T extends BaseForm> {
     List<T> findData(T query);
 
     /**
+     * 根据id查询数据集合
+     * @param id
+     * @return
+     */
+    List<T> findDataById(Long id);
+
+    /**
      * 通过id得到详细信息
      * @param id
      * @return

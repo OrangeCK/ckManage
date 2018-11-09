@@ -25,7 +25,12 @@ public class BaseServiceImpl<T extends BaseForm> implements BaseService<T>{
 
     @Override
     public List<T> findData(T query) {
-        return null;
+        return baseMapper.findData(query);
+    }
+
+    @Override
+    public List<T> findDataById(Long id) {
+        return baseMapper.findDataById(id);
     }
 
     @Override

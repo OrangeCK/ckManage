@@ -15,7 +15,7 @@ public class ResultData {
     /**
      * 返回code代码
      */
-    private Integer code;
+    private Integer code = 200;
     /**
      * 返回内容
      */
